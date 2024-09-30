@@ -55,7 +55,7 @@ export default function Home() {
           </p>
         </div>
         <div className="flex-1 mt-4 sm:mt-0 ">
-          <img src="/img/image.png" alt="Description" className="w-full h-auto rounded-full shadow-lg" />
+          <img src="https://ik.imagekit.io/ccyubla1p9v/wp-content/uploads/2023/06/types-of-procurement.png" alt="Description" className="w-full h-auto rounded-full shadow-lg" />
         </div>
       </div>
 
