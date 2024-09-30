@@ -1,8 +1,9 @@
 "use client";
-import React from "react";
+import React, {useContext} from "react";
 import { useForm, useFieldArray } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { querySpecsSchema } from "@/formSchema/querySpecsSchema";
+import { ScrapDataContext } from "@/context/ScrapeDataContent";
 
 function SpecsForm() {
     const {
@@ -13,18 +14,39 @@ function SpecsForm() {
     } = useForm({
         resolver: zodResolver(querySpecsSchema),
         defaultValues: {
-            itemName: "",
-            itemType: "",
-            specifications: [], // Ensure you initialize specifications as an array
+            product_name: "",
+            item_type: "",
+            specifications: [],
+            desired_price: 0// Ensure you initialize specifications as an array
         },
     });
     const { fields, append, remove } = useFieldArray({
         control,
         name: 'specifications', // Updated to match the correct name
     });
+    const { setProducts } = useContext(ScrapDataContext);
 
-    const onSubmit = (data) => {
-        console.log(data);
+    const onSubmit = async (data) => {
+        console.log("Form data:", data); // Logging form data before sending request
+
+        try {
+            const response = await fetch('http://127.0.0.1:8000/SpecificScrape', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(data),
+            });
+            if (response.ok) {
+                const result = await response.json();
+                console.log("API response data:", result); // Logging API response
+                setProducts(result || []); // Handle undefined or missing products
+            } else {
+                console.error('Error fetching data:', response.status, response.statusText);
+            }
+        } catch (error) {
+            console.error('Fetch error:', error);
+        }
     };
 
     return (
@@ -32,13 +54,13 @@ function SpecsForm() {
             <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
                 {/* Item Name Field */}
                 <div className="text-lg space-y-2">
-                    <label className="block font-semibold">Item Name</label>
+                    <label className="block font-semibold">Product Name</label>
                     <input
-                        {...register("itemName")}
+                        {...register("product_name")}
                         className="w-full p-2 border border-gray-300 rounded-lg text-lg focus:outline-none text-black focus:ring-2 focus:ring-blue-500"
                     />
-                    {errors.itemName && (
-                        <p className="text-red-500 text-sm">{errors.itemName.message}</p>
+                    {errors.product_name && (
+                        <p className="text-red-500 text-sm">{errors.product_name.message}</p>
                     )}
                 </div>
 
@@ -46,15 +68,15 @@ function SpecsForm() {
                 <div className="text-lg space-y-2">
                     <label className="block font-semibold">Item Type</label>
                     <select
-                        {...register("itemType")}
+                        {...register("item_type")}
                         className="w-full p-2 border border-gray-300 rounded-lg text-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-black"
                     >
                         <option value="">Select Type</option>
-                        <option value="Type 1">Type 1</option>
-                        <option value="Type 2">Type 2</option>
+                        <option value="electronic">Electronic</option>
+                        <option value="appliance">Appliance</option>
                     </select>
-                    {errors.itemType && (
-                        <p className="text-red-500 text-sm">{errors.itemType.message}</p>
+                    {errors.item_type && (
+                        <p className="text-red-500 text-sm">{errors.item_type.message}</p>
                     )}
                 </div>
 
@@ -82,7 +104,16 @@ function SpecsForm() {
                         <p className="text-red-500 text-sm">{errors.specifications.message}</p>
                     )}
                 </div>
-
+                <div className="text-lg space-y-2">
+                    <label className="block font-semibold">Desired Price</label>
+                    <input
+                        {...register("desired_price")}
+                        className="w-full p-2 border border-gray-300 rounded-lg text-lg focus:outline-none text-black focus:ring-2 focus:ring-blue-500"
+                    />
+                    {errors.desired_price && (
+                        <p className="text-red-500 text-sm">{errors.desired_price.message}</p>
+                    )}
+                </div>
                 {/* Submit Button */}
                 <button
                     type="submit"

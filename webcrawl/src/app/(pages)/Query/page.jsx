@@ -1,5 +1,5 @@
 "use client"
-import React, {useContext,useEffect} from 'react'
+import React, {useContext} from 'react'
 import Tabtrails from '@/components/Tabtrails'
 import { ScrapDataContext } from '@/context/ScrapeDataContent';
 import ScrapContent from '@/components/ScrapContent';
@@ -7,16 +7,14 @@ import ScrapContent from '@/components/ScrapContent';
 
 function query() {
   const { products } = useContext(ScrapDataContext);
-  let passProducts = products;
-  useEffect(()=>{
-    passProducts= products;
-  },[products])
-  console.log([products])
+  
   return (
-      <div className="h-full flex flex-col items-center m-5">
+    <div className="min-h-screen mb-5">
+      <div className=" container h-full flex flex-col items-center bg-black rounded-lg">
           <Tabtrails />
           <ScrapContent products={products}/>
       </div>
+    </div>
   )
 }
 

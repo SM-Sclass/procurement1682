@@ -1,13 +1,6 @@
-<<<<<<< HEAD
-import Showcase from "@/components/Showcase";
-import Image from "next/image";
-
-export default function Home() {
-  return (
-    <main className="flex flex-col items-center justify-items-center min-h-screen">
-      <Showcase/>
-=======
 "use client";
+import PreviousScrape from '@/components/PreviousScrape';
+import Showcase from '@/components/Showcase';
 import React from 'react';
 
 function HistoricalResults() {
@@ -53,15 +46,16 @@ function HistoricalResults() {
 
 export default function Home() {
   return (
-    <main className="flex flex-col min-h-screen p-8 sm:p-20">
+    <main className="flex flex-col min-h-screen p-5 sm:p-7 bg-black">
+      <Showcase/>
+      <PreviousScrape/>
       {/* Upper Section */}
-      <div className="flex-1 bg-gray-100"></div>
+      {/* <div className="flex-1 bg-gray-100"></div>
 
-      {/* Lower Section with Historical Results */}
+      Lower Section with Historical Results
       <div className="flex-1 bg-white border-t-2 border-gray-300 p-8">
         <HistoricalResults />
-      </div>
->>>>>>> c2daa8b33837251f60324fba3b256981c75175b5
+      </div> */}
     </main>
   );
 }

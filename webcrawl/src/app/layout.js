@@ -25,10 +25,7 @@ export default function RootLayout({ children }) {
       <head>
         <title>{metadata.title}</title>
         <meta name="description" content={metadata.description} />
-        <link
-          rel="stylesheet"
-          href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.2.0/remixicon.min.css"
-        />
+        
       </head>
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
           <Navbar />

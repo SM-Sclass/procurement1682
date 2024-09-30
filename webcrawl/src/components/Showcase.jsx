@@ -2,12 +2,14 @@ import React from 'react'
 
 function Showcase() {
     return (
-        <div className="w-full bg-black rounded-lg p-7">
-            <h1>This web application is designed to help you efficiently find approximate prices of various products and services.</h1>
-
-            Benchmark Prices for your procurement needs with just a few clicks.
-            Get the Latest Market Rates for commonly used products or sophisticated systems.
-            Make Informed Decisions based on real-time data gathered from multiple public sources.
+        <div className="container w-full bg-black rounded-lg p-7">
+            <h1 className="text-2xl p-3 mb-2 font-semibold">This web application is designed to help you efficiently find approximate prices of various products and services.</h1>
+            <div className="p-3 bg-indigo-700 text-white rounded-lg ">
+            <p className="text-lg">Benchmark Prices</p>
+            <p className="text-lg">Latest Market Rates</p>
+            <p className='text-lg'>Multi source real-time data gathered from </p>
+            </div>
+            
 
         </div>
     )

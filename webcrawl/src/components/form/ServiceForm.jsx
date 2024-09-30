@@ -13,7 +13,7 @@ function ServiceForm() {
     } = useForm({
         resolver: zodResolver(queryServiceSchema),
         defaultValues: {
-            serviceType:"", // Location
+            service_type:"", // Location
             location: "", // Service Type
             description: [], // Initialize specifications as an array
         },
@@ -24,10 +24,9 @@ function ServiceForm() {
         name: 'description',
     });
 
-    const onSubmit = async(data,e) => {
-        e.preventDefault();
-
-        const response = await fetch('http://127.0.0.1:8000/scrape', {
+    const onSubmit = async(data) => {
+        console.log(data)
+        const response = await fetch('http://127.0.0.1:8000/ServiceScrape', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -49,15 +48,15 @@ function ServiceForm() {
                 <div className="text-lg space-y-2">
                     <label className="block font-semibold">Service Type</label>
                     <select
-                        {...register("serviceType")}
+                        {...register("service_type")}
                         className="w-full p-2 border border-gray-300 rounded-lg text-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-black"
                     >
                         <option value="">Select Type</option>
-                        <option value="Type 1">Type 1</option>
-                        <option value="Type 2">Type 2</option>
+                        <option value="carpenter">Carpenter</option>
+                        <option value="plumbing">Plumbing</option>
                     </select>
-                    {errors.serviceType && (
-                        <p className="text-red-500 text-sm">{errors.serviceType.message}</p>
+                    {errors.service_type && (
+                        <p className="text-red-500 text-sm">{errors.service_type.message}</p>
                     )}
                 </div>
                 

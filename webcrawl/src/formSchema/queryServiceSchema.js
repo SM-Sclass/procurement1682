@@ -1,7 +1,7 @@
 import { z } from "zod";
 
 export const queryServiceSchema = z.object({
-    serviceType: z.string().min(1, "Service Type is required"), // Correctly updated to itemType
+    service_type: z.string().min(1, "Service Type is required"), // Correctly updated to itemType
     location: z.string().min(1, "Location is required"), // Correctly updated to itemName
     description: z.array(
         z.object({
