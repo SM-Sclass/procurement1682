@@ -1,6 +1,4 @@
 "use client";
-import PreviousScrape from '@/components/PreviousScrape';
-import Showcase from '@/components/Showcase';
 import React from 'react';
 
 function HistoricalResults() {
@@ -46,16 +44,42 @@ function HistoricalResults() {
 
 export default function Home() {
   return (
-    <main className="flex flex-col min-h-screen p-5 sm:p-7 bg-black">
-      <Showcase/>
-      <PreviousScrape/>
+    <main className="flex flex-col min-h-screen p-8 sm:p-20">
       {/* Upper Section */}
-      {/* <div className="flex-1 bg-gray-100"></div>
+      <div className="flex flex-col sm:flex-row bg-gray-100 items-center justify-between p-6">
+        <div className="flex-1">
+          <h1 className="text-3xl font-bold">Welcome to Our Product Search Website</h1>
+          <p className="mt-4 text-gray-700">
+          This platform is used for finding products and services through web scraping, 
+          providing better results using data processing and machine learning.
+          </p>
+        </div>
+        <div className="flex-1 mt-4 sm:mt-0 ">
+          <img src="https://ik.imagekit.io/ccyubla1p9v/wp-content/uploads/2023/06/types-of-procurement.png" alt="Description" className="w-full h-auto rounded-full shadow-lg" />
+        </div>
+      </div>
 
-      Lower Section with Historical Results
+      {/* Feature Cards */}
+      <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 mt-8">
+        <div className="bg-white border rounded-lg p-6 shadow-md">
+          <h3 className="text-lg font-semibold">Search By Product</h3>
+          <p className="mt-2 text-gray-600">Find products based on your specific needs.</p>
+        </div>
+        <div className="bg-white border rounded-lg p-6 shadow-md">
+          <h3 className="text-lg font-semibold">Search By Specification</h3>
+          <p className="mt-2 text-gray-600">Look up products by their technical specifications.</p>
+        </div>
+        <div className="bg-white border rounded-lg p-6 shadow-md">
+          <h3 className="text-lg font-semibold">Search By Service</h3>
+          <p className="mt-2 text-gray-600">Discover services related to your needs.</p>
+        </div>
+      </div>
+      <br />
+
+      {/* Lower Section with Historical Results */}
       <div className="flex-1 bg-white border-t-2 border-gray-300 p-8">
         <HistoricalResults />
-      </div> */}
+      </div>
     </main>
   );
 }
