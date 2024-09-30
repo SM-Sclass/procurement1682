@@ -28,7 +28,7 @@ function SpecsForm() {
     };
 
     return (
-        <div className="container mx-auto max-w-lg ">
+        <div className="container mx-auto max-w-lg h-full ">
             <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
                 {/* Item Name Field */}
                 <div className="text-lg space-y-2">
@@ -86,10 +86,11 @@ function SpecsForm() {
                 {/* Submit Button */}
                 <button
                     type="submit"
-                    className="w-full p-2 bg-black text-white text-lg rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    className="w-full p-2 bg-black text-white text-lg rounded-lg  focus:outline-none transition ease-in-out hover:-translate-y-1 hover:scale-110 "
                 >
                     Search
                 </button>
+
             </form>
         </div>
     );

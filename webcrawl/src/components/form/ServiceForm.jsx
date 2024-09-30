@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, {useState} from "react";
 import { useForm, useFieldArray } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { queryServiceSchema } from "@/formSchema/queryServiceSchema";
@@ -18,14 +18,29 @@ function ServiceForm() {
             description: [], // Initialize specifications as an array
         },
     });
-    
+    const [products, setProducts] = useState([]);
     const { fields, append, remove } = useFieldArray({
         control,
         name: 'description',
     });
 
-    const onSubmit = (data) => {
-        console.log(data);
+    const onSubmit = async(data,e) => {
+        e.preventDefault();
+
+        const response = await fetch('http://127.0.0.1:8000/scrape', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(data),
+        });
+
+        if (response.ok) {
+            const data = await response.json();
+            setProducts(data.products); // Assuming your API returns { products: [...] }
+        } else {
+            console.error('Error fetching data');
+        }
     };
 
     return (
@@ -65,7 +80,7 @@ function ServiceForm() {
                     {fields.map((item, index) => (
                         <div key={item.id} className="flex items-center space-x-2">
                             <input
-                                {...register(`description.${index}.specName`)} // Add required validation here if needed
+                                {...register(`description.${index}.descpName`)} // Add required validation here if needed
                                 className="w-full p-2 border border-gray-300 rounded-lg text-lg focus:outline-none text-black focus:ring-2 focus:ring-blue-500"
                             />
                             <button type="button" onClick={() => remove(index)} className="text-red-500">
@@ -83,7 +98,7 @@ function ServiceForm() {
 
                 <button
                     type="submit"
-                    className="w-full p-2 bg-black text-white text-lg rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    className="w-full p-2 bg-black text-white text-lg rounded-lg  focus:outline-none transition ease-in-out  hover:-translate-y-1 hover:scale-110"
                 >
                     Search
                 </button>

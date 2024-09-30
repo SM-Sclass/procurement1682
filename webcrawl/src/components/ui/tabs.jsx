@@ -26,7 +26,7 @@ export const Tabs = ({
   return (<>
     <div
       className={cn(
-        "flex flex-row items-center justify-start [perspective:1000px] relative overflow-auto sm:overflow-visible  max-w-full w-full",
+        "flex flex-row items-center justify-start [perspective:1000px] relative overflow-auto sm:overflow-visible  max-w-full w-full mb-5",
         containerClassName
       )}>
       {propTabs.map((tab, idx) => (
@@ -61,7 +61,7 @@ export const Tabs = ({
       active={active}
       key={active.value}
       hovering={hovering}
-      className={cn("mt-10", contentClassName)} />
+      className={cn("pd-10", contentClassName)} />
   </>);
 };
 

@@ -1,11 +1,22 @@
-import React from 'react'
+"use client"
+import React, {useContext,useEffect} from 'react'
 import Tabtrails from '@/components/Tabtrails'
+import { ScrapDataContext } from '@/context/ScrapeDataContent';
+import ScrapContent from '@/components/ScrapContent';
+
 
 function query() {
+  const { products } = useContext(ScrapDataContext);
+  let passProducts = products;
+  useEffect(()=>{
+    passProducts= products;
+  },[products])
+  console.log([products])
   return (
-    <div className="h-screen flex flex-col items-center my-6">
-        <Tabtrails/>
-    </div>
+      <div className="h-full flex flex-col items-center m-5">
+          <Tabtrails />
+          <ScrapContent products={products}/>
+      </div>
   )
 }
 
