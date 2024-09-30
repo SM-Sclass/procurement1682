@@ -20,7 +20,7 @@ function Navbar({ className }) {
                 <MenuItem setActive={setActive} active={active} item="Settings" href="Settings">
                     <div className="flex flex-col space-y-4 text-sm">
                         <HoveredLink href="/Profile">Profile</HoveredLink>
-                        <HoveredLink href="/Logout">Logout</HoveredLink>
+                        <HoveredLink href="/Signin">SignIn</HoveredLink>
                     </div>
                 </MenuItem>
             </Menu>

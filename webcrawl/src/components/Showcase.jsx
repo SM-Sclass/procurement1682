@@ -9,8 +9,6 @@ function Showcase() {
             <p className="text-lg">Latest Market Rates</p>
             <p className='text-lg'>Multi source real-time data gathered from </p>
             </div>
-            
-
         </div>
     )
 }

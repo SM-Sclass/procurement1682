@@ -9,8 +9,9 @@ function query() {
   const { products } = useContext(ScrapDataContext);
   
   return (
-    <div className="min-h-screen mb-5">
+    <div className="min-h-screen my-10">
       <div className=" container h-full flex flex-col items-center bg-black rounded-lg">
+        <h1 className="text-xl my-3 p-3">Query your Requirments</h1>
           <Tabtrails />
           <ScrapContent products={products}/>
       </div>

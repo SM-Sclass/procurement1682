@@ -30,8 +30,8 @@ function ServiceHistory() {
     return (
         <div className="container flex flex-col items-center mx-auto p-4">
             <h2 className="text-xl font-semibold mt-8 mb-4">Product History</h2>
-            <div className="overflow-x-auto ">
-                <table className="table-auto w-full border-collapse">
+            <div className="overflow-x-auto w-full">
+                <table className="table-auto w-full overflow-x-auto border-collapse">
                     <thead>
                         <tr className="bg-gray-900 text-white">
                             <th className="px-4 py-2 border">Name</th>
